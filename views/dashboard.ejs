@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Minha Agenda</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Bem-vindo, <%= user.email %>!</h2>
+        <h3>Sua Agenda de Contatos</h3>
+
+        <form action="/add" method="POST">
+            <input type="text" name="nome" placeholder="Nome" required><br>
+            <input type="text" name="telefone" placeholder="Telefone" required><br>
+            <input type="email" name="email" placeholder="Email"><br>
+            <button type="submit">Adicionar Contato</button>
+        </form>
+
+        <h3>Seus Contatos</h3>
+        <ul>
+            <% contatos.forEach(contato => { %>
+                <li>
+                    <strong><%= contato.nome %></strong> - <%= contato.telefone %> 
+                    <% if (contato.email) { %> (<%= contato.email %>) <% } %> 
+                    | <a href="/delete/<%= contato._id %>">Remover</a>
+                </li>
+            <% }) %>
+        </ul>
+
+        <a href="/logout">Sair</a>
+    </div>
+</body>
+</html>
