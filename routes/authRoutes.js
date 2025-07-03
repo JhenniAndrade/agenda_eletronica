@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authController');
-const contatoController = require('../controllers/contatoController'); // importe também o contatoController
+const contatoController = require('../controllers/contatoController'); 
 
-// Middleware para proteger rotas
 function isAuth(req, res, next) {
     if (req.session.isAuth) {
         next();
